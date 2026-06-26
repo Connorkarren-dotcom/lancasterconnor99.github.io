@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>于怀泽 Connor | 个人页</title>
+  <meta name="description" content="于怀泽 Connor 个人网站｜健身、自律、力量｜互动版" />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #fff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #d2d2d7;
+      --radius: 30px;
+      --shadow: 0 12px 36px rgba(0,0,0,.08);
+      --max: 1200px;
+      --blue: #0071e3;
+      --ok: #34c759;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      scroll-behavior: smooth;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      backdrop-filter: saturate(160%) blur(18px);
+      background: rgba(245,245,247,.76);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-size: 15px; font-weight: 600; letter-spacing: .2px; }
+    .nav-links { display: flex; gap: 16px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: #1d1d1f; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 16px 20px 70px; }
+
+    .hero {
+      min-height: 78vh;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      background: #000;
+      display: grid;
+      align-items: end;
+      animation: fadeUp .8s ease both;
+    }
+    .hero img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.14), rgba(0,0,0,.58));
+      display: flex; align-items: flex-end;
+    }
+    .hero-copy { padding: 42px; color: #fff; max-width: 760px; }
+    .eyebrow { font-size: 14px; opacity: .9; margin-bottom: 8px; letter-spacing: .3px; }
+    h1 { margin: 0; font-size: clamp(36px, 6vw, 72px); line-height: 1.02; letter-spacing: -.03em; }
+    .sub { margin: 16px 0 0; font-size: clamp(16px, 2vw, 22px); line-height: 1.5; color: rgba(255,255,255,.9); }
+    .cta { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { border-radius: 999px; padding: 10px 18px; font-size: 14px; transition: transform .25s ease; border: none; cursor: pointer; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-secondary { border: 1px solid rgba(255,255,255,.38); color: #fff; background: rgba(255,255,255,.08); }
+
+    .section {
+      margin-top: 22px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px 30px;
+      animation: fadeUp .8s ease both;
+    }
+    .section h2 { margin: 0; font-size: clamp(28px, 3vw, 44px); letter-spacing: -.01em; }
+    .lead { margin-top: 12px; color: var(--muted); font-size: 17px; line-height: 1.8; max-width: 900px; }
+
+    .chips { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip { padding: 9px 13px; border-radius: 999px; background: #f2f2f4; border: 1px solid #ebebee; color: #3a3a3c; font-size: 13px; }
+
+    .about-card {
+      margin-top: 16px;
+      border-radius: 22px;
+      border: 1px solid #ececf0;
+      background: linear-gradient(135deg, #1b2d3a 0%, #223e50 100%);
+      color: #fff;
+      padding: 20px;
+    }
+    .about-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .about-name { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.05; letter-spacing: -.02em; }
+    .about-en { margin: 0; font-size: clamp(16px, 2.2vw, 34px); color: rgba(255,255,255,.25); font-weight: 700; letter-spacing: .06em; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .about-item {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+    .about-item:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.28);
+    }
+    .about-label { margin: 0; font-size: 12px; color: rgba(255,255,255,.7); }
+    .about-value { margin: 6px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -.01em; }
+
+    .about-tip {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,.78);
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px dashed rgba(255,255,255,.28);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .stats { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .stat { border-radius: 20px; background: #fafafa; border: 1px solid #efeff2; padding: 18px 16px; }
+    .stat .k { font-size: clamp(24px, 3vw, 34px); margin: 0; font-weight: 600; }
+    .stat .d { margin-top: 4px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .gallery { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .item { border-radius: 20px; overflow: hidden; position: relative; min-height: 220px; background: #f0f0f2; }
+    .item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .55s ease; }
+    .item:hover img { transform: scale(1.04); }
+    .cap { position: absolute; left: 10px; bottom: 10px; font-size: 12px; background: rgba(255,255,255,.8); color: #3a3a3c; border-radius: 999px; padding: 6px 10px; backdrop-filter: blur(10px); }
+
+    .interactive-grid {
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .panel {
+      border: 1px solid #ececf0;
+      border-radius: 22px;
+      padding: 18px;
+      background: #fafafa;
+    }
+    .panel h3 { margin: 0 0 10px; font-size: 20px; }
+    .panel p { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    .faq-item { border-top: 1px solid #e9e9ed; padding: 12px 0; }
+    .faq-item:first-of-type { border-top: 0; padding-top: 0; }
+    .faq-q { font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
+    .faq-a { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.7; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    .form { display: grid; gap: 10px; }
+    .input, .textarea, .select {
+      width: 100%;
+      border: 1px solid #dddde3;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      background: #fff;
+    }
+    .textarea { min-height: 100px; resize: vertical; }
+
+    .msg-list { margin-top: 12px; display: grid; gap: 10px; }
+    .msg-item {
+      background: #fff;
+      border: 1px solid #ececf1;
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .msg-item .meta { font-size: 12px; color: #8d8d92; margin-bottom: 6px; }
+    .msg-item .text { font-size: 14px; color: #1d1d1f; line-height: 1.6; }
+
+    .success {
+      display: none;
+      margin-top: 8px;
+      color: #1f7a3f;
+      font-size: 13px;
+      background: rgba(52,199,89,.1);
+      border: 1px solid rgba(52,199,89,.3);
+      border-radius: 10px;
+      padding: 7px 10px;
+    }
+
+    .contact { margin-top: 14px; color: var(--muted); line-height: 1.9; font-size: 16px; }
+    .footer { text-align: center; color: #8d8d92; font-size: 13px; padding: 36px 0 8px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px);} to { opacity: 1; transform: translateY(0);} }
+
+    @media (max-width: 980px) {
+      .hero { min-height: 62vh; }
+      .hero-copy { padding: 26px; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .interactive-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .wrap { padding: 12px 12px 50px; }
+      .section { padding: 24px 18px; }
+      .gallery { grid-template-columns: 1fr; }
+      .about-head { flex-direction: column; align-items: flex-start; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .about-value { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#">于怀泽 Connor</a>
+      <nav class="nav-links">
+        <a href="#about">关于我</a>
+        <a href="#career">职业发展</a>
+        <a href="#fitness">健身</a>
+        <a href="#visual">视觉</a>
+        <a href="#interactive">互动</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <img src="./assets/photos/15.jpeg" alt="于怀泽 Connor 形象图" />
+      <div class="hero-overlay">
+        <div class="hero-copy">
+          <div class="eyebrow">YU HUAIZE · CONNOR</div>
+          <h1>自律塑造日常，力量塑造长期。</h1>
+          <p class="sub">我在商业实践中追求稳定执行与清晰表达，也在训练中建立身体与意志。持续进步，是我对工作与生活共同的要求。</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#career">查看职业发展</a>
+            <a class="btn btn-secondary" href="#visual">浏览视觉画面</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>关于我</h2>
+      <p class="lead">我把自己定义为“重执行、敢开拓”的增长型人才。你可以先从下面的个人信息快速认识我，再继续往下看职业发展路径。</p>
+      <div class="about-card">
+        <div class="about-head">
+          <h3 class="about-name">于怀泽</h3>
+          <p class="about-en">PERSONAL RESUME</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-item"><p class="about-label">性别</p><p class="about-value">男</p></div>
+          <div class="about-item"><p class="about-label">年龄</p><p class="about-value">26</p></div>
+          <div class="about-item"><p class="about-label">现所在地</p><p class="about-value">杭州</p></div>
+          <div class="about-item"><p class="about-label">开始工作时间</p><p class="about-value">2018</p></div>
+          <div class="about-item"><p class="about-label">最高学历</p><p class="about-value">本科</p></div>
+          <div class="about-item"><p class="about-label">户籍</p><p class="about-value">山东</p></div>
+          <div class="about-item"><p class="about-label">民族</p><p class="about-value">汉族</p></div>
+          <div class="about-item"><p class="about-label">身高</p><p class="about-value">192cm</p></div>
+          <div class="about-item"><p class="about-label">体重</p><p class="about-value">100kg</p></div>
+        </div>
+        <div class="about-tip">💡 悬停卡片可高亮信息，继续下滑可查看职业路径详情</div>
+      </div>
+      <div class="chips">
+        <span class="chip">关键词：自律</span>
+        <span class="chip">关键词：力量</span>
+        <span class="chip">关键词：长期主义</span>
+        <span class="chip">关键词：执行力</span>
+      </div>
+    </section>
+
+    <section class="section" id="career">
+      <h2>职业发展路径</h2>
+      <p class="lead">从校园到市场一线，再到区域渠道统筹，我持续围绕“开拓能力 + 执行落地”构建职业竞争力。</p>
+      <div class="stats">
+        <div class="stat"><p class="k">里程碑</p><div class="d">从在校实践到区域客户经理，持续完成角色升级。</div></div>
+        <div class="stat"><p class="k">结果</p><div class="d">实现客户拓展、渠道搭建和业绩增长的多维突破。</div></div>
+        <div class="stat"><p class="k">能力</p><div class="d">兼具全渠道拓展、团队带领与一条龙业务闭环能力。</div></div>
+      </div>
+
+      <h3>性格培养期｜在校 / 幼教机构市场主管</h3>
+      <p class="lead"><strong>浙江外国语学院（2017.09-2022.06）</strong> 国际商务专业，主修经济学基础、管理学基础、市场营销学。获得2018浙江省政府奖学金与校奖学金；累计12张比赛奖状；担任班长及各科课代表。</p>
+      <p class="lead"><strong>杭州百思托控股集团有限公司（2018.06-2021.02）</strong> 金色雨林下沙门店市场主管（实习）：组建团队收集目标客户信息超3万条；店庆及商场活动组织实现100%续课；需求挖掘实现最高80%转化率。</p>
+
+      <h3>职业素养塑造期｜正大集团电商主管</h3>
+      <p class="lead">2022年1月以管培生身份入职，完成一个月全渠道轮岗与培训后定岗电商渠道；开拓6个地区知名电商平台，实现月出货12吨、年营收超400万元并升职电商主管；在职期间获得FLP证书，并带领团队向谢国民先生汇报工作开展。</p>
+
+      <h3>渠道拓展期｜诸老大杭州区域客户经理</h3>
+      <p class="lead">2023年2月入职，负责浙江区域线上线下渠道统筹搭建，开发17+名大客户经销商；全年业绩从200万提升至2000万，承担浙江大区超65%业绩指标；负责OEM定制、生产发货追踪、客诉处理、对账收款到库存处理，形成一条龙服务闭环；在职期间获一年优秀员工，连续两年销冠。</p>
+
+      <h3>擅长开发渠道 / 全渠道案例</h3>
+      <div class="chips">
+        <span class="chip">CVS直营：十足</span>
+        <span class="chip">KA代管：Ole / 大红鹰 / 世纪联华</span>
+        <span class="chip">线上私域：蜂享会 / 快团团头部团长</span>
+        <span class="chip">经销商：礼品 / 零食渠道批发</span>
+        <span class="chip">纯佣直播MCN：锋汇创源 / 新灿</span>
+      </div>
+
+      <h3>自我评价｜执行力、实干家</h3>
+      <p class="lead">在校阶段通过比赛与实践完成性格塑造；外企经历强化了自我管理与渠道认知能力；老字号品牌历练了我从开拓到交付的一条龙服务能力、抗压能力与从0到1行动力。当前定位为具备开疆扩土能力的实干型业务人才，未来目标是走出浙江、面向全国市场。</p>
+    </section>
+
+    <section class="section" id="fitness">
+      <h2>健身主线</h2>
+      <p class="lead">健身是我长期坚持的生活方式。我重视力量训练与恢复节奏，用可持续的训练习惯建立稳定状态。这份自律迁移到工作中，也体现为对目标管理和节奏管理的重视。</p>
+      <div class="stats">
+        <div class="stat"><p class="k">力量</p><div class="d">以力量训练为核心，追求稳定且可持续的进步。</div></div>
+        <div class="stat"><p class="k">自律</p><div class="d">重视训练计划、作息节奏与长期执行力。</div></div>
+        <div class="stat"><p class="k">长期</p><div class="d">不追求短期爆发，更关注长期可复利的成长。</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="visual">
+      <h2>视觉画面</h2>
+      <p class="lead">以下精选你的真实照片，用于构建个人品牌视觉叙事：训练、户外、城市与旅行，统一传达“健康、自律、力量感”。</p>
+      <div class="gallery">
+        <figure class="item"><img src="./assets/photos/04.jpeg" alt="健身房训练" /><span class="cap">Gym Session</span></figure>
+        <figure class="item"><img src="./assets/photos/07.jpeg" alt="窗边背部训练成果" /><span class="cap">Body Control</span></figure>
+        <figure class="item"><img src="./assets/photos/13.jpeg" alt="水上运动" /><span class="cap">Outdoor Power</span></figure>
+        <figure class="item"><img src="./assets/photos/10.jpeg" alt="城市背景" /><span class="cap">Urban Energy</span></figure>
+        <figure class="item"><img src="./assets/photos/16.jpeg" alt="海边徒步" /><span class="cap">Discipline in Nature</span></figure>
+        <figure class="item"><img src="./assets/photos/19.jpeg" alt="花海人像" /><span class="cap">Calm & Focused</span></figure>
+        <figure class="item"><img src="./assets/photos/03.jpeg" alt="夜景自拍" /><span class="cap">Afterwork Rhythm</span></figure>
+        <figure class="item"><img src="./assets/photos/06.jpeg" alt="花海训练" /><span class="cap">Balanced Lifestyle</span></figure>
+        <figure class="item"><img src="./assets/photos/18.jpeg" alt="海边落日" /><span class="cap">Long-term Mindset</span></figure>
+      </div>
+    </section>
+
+    <section class="section" id="interactive">
+      <h2>互动区</h2>
+      <p class="lead">你可以在这里快速了解我、留下合作线索和留言。当前为前端互动版，提交信息保存在你的本地浏览器。</p>
+      <div class="interactive-grid">
+        <div class="panel">
+          <h3>提问区</h3>
+          <p>点击问题即可查看回答。</p>
+          <div class="faq-item">
+            <div class="faq-q">你最擅长的方向是什么？<span>＋</span></div>
+            <div class="faq-a">我擅长将品牌表达与执行落地结合，强调结果导向与长期复盘。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">你日常如何保持状态？<span>＋</span></div>
+            <div class="faq-a">通过力量训练、规律作息和阶段性目标管理，保持稳定节奏。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">合作沟通偏好是什么？<span>＋</span></div>
+            <div class="faq-a">我偏好明确目标、快速同步、定期复盘的沟通方式。</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>留下联系方式</h3>
+          <p>如果你有合作想法，欢迎提交你的信息。</p>
+          <form class="form" id="leadForm">
+            <input class="input" name="name" placeholder="你的称呼" required />
+            <input class="input" name="contact" placeholder="联系方式（微信/邮箱/手机）" required />
+            <select class="select" name="intent" required>
+              <option value="">合作意向</option>
+              <option>品牌合作</option>
+              <option>项目沟通</option>
+              <option>商务咨询</option>
+            </select>
+            <textarea class="textarea" name="note" placeholder="简单说说你的需求"></textarea>
+            <button class="btn btn-primary" type="submit">提交信息</button>
+            <div class="success" id="leadSuccess">提交成功（已保存在本地浏览器）。</div>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>留言区</h3>
+          <p>欢迎给我留一句话。</p>
+          <form class="form" id="msgForm">
+            <input class="input" name="nickname" placeholder="你的昵称" required />
+            <textarea class="textarea" name="message" placeholder="请输入留言内容" required></textarea>
+            <button class="btn btn-primary" type="submit">发布留言</button>
+            <div class="success" id="msgSuccess">留言成功，感谢你的反馈。</div>
+          </form>
+          <div class="msg-list" id="msgList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>联系我</h2>
+      <div class="contact">
+        邮箱：请填写你的邮箱<br />
+        微信：请填写你的微信号<br />
+        手机：请填写你的手机号
+      </div>
+    </section>
+
+    <div class="footer">© <span id="year"></span> 于怀泽 Connor. All rights reserved.</div>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.faq-q').forEach((q) => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('open');
+        q.querySelector('span').textContent = item.classList.contains('open') ? '－' : '＋';
+      });
+    });
+
+    const leadForm = document.getElementById('leadForm');
+    const leadSuccess = document.getElementById('leadSuccess');
+    leadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(leadForm);
+      const item = {
+        name: formData.get('name'),
+        contact: formData.get('contact'),
+        intent: formData.get('intent'),
+        note: formData.get('note'),
+        time: new Date().toISOString()
+      };
+      const list = JSON.parse(localStorage.getItem('connor_leads') || '[]');
+      list.unshift(item);
+      localStorage.setItem('connor_leads', JSON.stringify(list));
+      leadForm.reset();
+      leadSuccess.style.display = 'block';
+      setTimeout(() => leadSuccess.style.display = 'none', 2200);
+    });
+
+    const msgForm = document.getElementById('msgForm');
+    const msgList = document.getElementById('msgList');
+    const msgSuccess = document.getElementById('msgSuccess');
+
+    function renderMessages() {
+      const msgs = JSON.parse(localStorage.getItem('connor_messages') || '[]');
+      msgList.innerHTML = '';
+      msgs.slice(0, 8).forEach((m) => {
+        const div = document.createElement('div');
+        div.className = 'msg-item';
+        const date = new Date(m.time);
+        div.innerHTML = `<div class="meta">${m.nickname} · ${date.toLocaleDateString()}</div><div class="text">${m.message}</div>`;
+        msgList.appendChild(div);
+      });
+      if (!msgs.length) {
+        msgList.innerHTML = '<div class="msg-item"><div class="meta">还没有留言</div><div class="text">成为第一个留言的人吧。</div></div>';
+      }
+    }
+
+    msgForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(msgForm);
+      const item = {
+        nickname: formData.get('nickname'),
+        message: formData.get('message'),
+        time: new Date().toISOString()
+      };
+      const msgs = JSON.parse(localStorage.getItem('connor_messages') || '[]');
+      msgs.unshift(item);
+      localStorage.setItem('connor_messages', JSON.stringify(msgs));
+      msgForm.reset();
+      msgSuccess.style.display = 'block';
+      setTimeout(() => msgSuccess.style.display = 'none', 1800);
+      renderMessages();
+    });
+
+    renderMessages();
+  </script>
+</body>
+</html>
